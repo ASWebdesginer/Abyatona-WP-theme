@@ -1,3 +1,13 @@
+
+<?php 
+/**
+ * Template parts: Project CPT cards
+ *
+ * @package Abyatona
+ * @subpackage Abyatona
+ * @since Abyatona
+ */
+?>
 <div class="build-slider">
     <div class="care-slider-sec">
         <div class="container">

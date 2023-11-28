@@ -128,93 +128,13 @@ if($ourserv){
 ?>
   <section class="build">
     <div class="container">
-      <img src="img/Vector.png" class="vector-img" alt="vector" />
+      <img src="<?php echo get_template_directory_uri(); ?>/img/Vector.png" class="vector-img" alt="vector" />
       <div class="heading">
         <h3>WHAT WE BUILD</h3>
         <p>Explore our projects</p>
       </div>
+      <?php include(__DIR__.'/templateparts/PorjectCardv2.php'); ?>
 
-      <div class="build-slider">
-        <div class="care-slider-sec">
-          <div class="container">
-            <div class="ourCliendslider">
-              <div id="marketingBannerSlider2" class="marketingBannerSlider1 owl-carousel owl-theme">
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-
-                <div class="marketingBannerSliderBx item">
-                  <div class="our-box">
-                    <img src="img/12.png" alt="">
-                    <h3>high quality products</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

@@ -1,5 +1,6 @@
 <?php
 define("PATHLOCAL", __DIR__);
+show_admin_bar(true);
 
 //svg allow
 function allow_svg_upload($mimes) {
@@ -40,16 +41,16 @@ function theme_customizer_logo_section($wp_customize) {
     ));
 
     // Add setting for header logo image
-    $wp_customize->add_setting('theme_logo', array(
+    $wp_customize->add_setting('theme_transparent_logo', array(
         'default' => '',
         'transport' => 'refresh',
     ));
 
     // Add control for header logo image
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'theme_logo', array(
-        'label' => __('Upload Logo', 'abyatona'),
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'theme_transparent_logo', array(
+        'label' => __('Upload Transparent Header Logo', 'abyatona'),
         'section' => 'theme_logo_section',
-        'settings' => 'theme_logo',
+        'settings' => 'theme_transparent_logo',
     )));
 
     // Add setting for footer logo image
@@ -63,6 +64,19 @@ function theme_customizer_logo_section($wp_customize) {
         'label' => __('Upload Footer Logo', 'abyatona'),
         'section' => 'theme_logo_section',
         'settings' => 'footer_theme_logo',
+    )));
+
+    // Add setting for normal logo image
+    $wp_customize->add_setting('theme_logo', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    // Add control for header logo image
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'theme_logo', array(
+        'label' => __('Upload  Logo', 'abyatona'),
+        'section' => 'theme_logo_section',
+        'settings' => 'theme_logo',
     )));
 }
 add_action('customize_register', 'theme_customizer_logo_section');
@@ -109,7 +123,7 @@ function register_project_cpt(){
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => 20,
-        'supports'           => array( 'title', 'editor', 'author', 'thumbnail','custom fields' ),
+        'supports'           => array( 'title', 'editor', 'author', 'thumbnail','custom fields','excerpt' ),
         'taxonomies'         => array( 'category', 'post_tag' ),
         'show_in_rest'       => true
     );

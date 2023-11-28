@@ -1,4 +1,4 @@
-    <header class="p-0 desktop-header" id="header">
+<header class="p-0 desktop-header" id="header">
       <div class="container">
         <nav>
           <ul>
@@ -48,9 +48,9 @@
 
             <li>
               <?php
-              $logo_url = get_theme_mod('theme_logo', '');
+              $logo_url = get_theme_mod('theme_transparent_logo', '');
               ?>
-              <a href="index.php"><img src="<?php echo esc_url($logo_url); ?>" class="black-logo" alt="logo" /></a>
+              <a href="/"><img src="<?php echo esc_url($logo_url); ?>" class="black-logo" alt="logo" /></a>
             </li>
 
             <li class="d-flex justify-content-end">
@@ -78,7 +78,10 @@
       <div class="container">
         <ul class="d-flex justify-content-center pt-4 mb-4">
           <li>
-            <a href="index.php"><img src="img/logo.png" class="black-logo" alt="logo" /></a>
+          <?php
+              $logo_url = get_theme_mod('theme_transparent_logo', '');
+              ?>
+              <a href="/"><img src="<?php echo esc_url($logo_url); ?>" class="black-logo" alt="logo" /></a>
           </li>
         </ul>
         <nav>
@@ -89,15 +92,32 @@
                   Home
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="vision-mision.php">| Vision and Mission</a>
-                  <a class="dropdown-item" href="about.php">| About Us</a>
-                  <a class="dropdown-item" href="our-services.php">| Our Services</a>
-                  <a class="dropdown-item" href="wahat-aldamam.php">| Wahat AlDamam</a>
-                  <a class="dropdown-item" href="abyatona-lily.php">| Abyatona Lily</a>
-                  <a class="dropdown-item" href="abyatona-hill.php">| Abyatona Hills</a>
-                  <a class="dropdown-item" href="abyatona-bay.php">| Abyatona Bay</a>
-                  <a class="dropdown-item" href="jeddah-heights.php">| Jeddah Heights</a>
-                  <a class="dropdown-item" href="contact-us.php">| Contact us</a>
+                <?php
+                  // Specify the menu location
+                  $menu_location = 'custom_menu';
+
+                  // Get the menu object by location
+                  $menu_object = get_nav_menu_locations();
+                  $menu_id = isset($menu_object[$menu_location]) ? $menu_object[$menu_location] : null;
+
+                  // Check if the menu ID exists
+                  if ($menu_id) {
+                    // Get menu items from the specified menu
+                    $menu_items = wp_get_nav_menu_items($menu_id);
+
+                    // Check if there are menu items
+                    if ($menu_items) {
+                      foreach ($menu_items as $menu_item) {
+                        // Get the text and link (URL) of the menu item
+                        $text = $menu_item->title;
+                        $link = $menu_item->url;
+
+                        // Output or use the text and link as needed
+                        echo '<a class="dropdown-item" href="' . esc_html($link) . '">| ' . esc_html($text) . '</a> ';
+                      }
+                    }
+                  }
+                  ?>
 
                 </div>
 
@@ -114,10 +134,8 @@
               <form action="" method="POST">
                 <select class="lang-select" name="locale" onchange="this.form.submit()">
 
-                  <option value="en" <?php if ($_SESSION['locale'] == 'en') echo 'selected';
-                                      ?>>English</option>
-                  <option value="ar" <?php if ($_SESSION['locale'] == 'ar') echo 'selected';
-                                      ?>>عربي</option>
+                  <option value="en" >English</option>
+                  <option value="ar" >عربي</option>
 
 
                 </select>
