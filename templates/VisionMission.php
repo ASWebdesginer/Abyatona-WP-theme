@@ -130,12 +130,12 @@ get_header();
 </style>
 
 
-<section class="new-banner" id="new-banner">
+<section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background');?>)">
     <div class="container">
         <?php include(PATHLOCAL . '/navbar.php'); ?>
         <div class="content">
             <h1>
-                vision and mission
+            <?php echo get_field('hero_heading'); ?>
             </h1>
         </div>
 
@@ -149,16 +149,16 @@ get_header();
     <div class="container">
         <img src="<?php echo get_template_directory_uri(); ?>/img/Vector30.png" class="vector-img-30" alt="vector">
         <div class="heading">
-            <h3>Goals</h3>
-            <h5><?php echo get_field('goals_heading'); ?></h5>
+            <h3><?php echo get_field('goal_section_sub_heading'); ?></h3>
+            <h5><?php echo get_field('goal_section_heading'); ?></h5>
         </div>
 
         <div class="row">
             <?php
-            if (have_rows('goal_inovation_points')) {
-                while (have_rows('goal_inovation_points')) {
+            if (have_rows('goal_innovation_points')) {
+                while (have_rows('goal_innovation_points')) {
                     the_row();
-                    $goaldesc = get_sub_field('goal_inovation_points_desc'); ?>
+                    $goaldesc = get_sub_field('goal_innovation_point_description'); ?>
                     <div class="col-lg-3">
                         <div class="content">
                             <p><?php echo $goaldesc; ?></p>
@@ -175,15 +175,10 @@ get_header();
 <section class="who-we-are">
     <div class="container">
         <div class="row justify-content-center">
-            <?php
-            $visionsect = get_field('our_vision_section');
-            if ($visionsect) {
-            ?>
-
                 <div class="col-lg-5 d-lg-flex align-items-center">
                     <div class="content">
-                        <h3>Our Vision</h3>
-                        <p><?php echo $visionsect['vision_description']; ?></p>
+                        <h3><?php echo get_field('vision_section_heading'); ?></h3>
+                        <p><?php echo get_field('vision_section_description'); ?></p>
                     </div>
                 </div>
 
@@ -193,10 +188,11 @@ get_header();
 
                     <div class="slideshow-container">
                         <?php
-                        $repeaters = $visionsect['vision_image_gallery'];
-                        foreach ($repeaters as $repeater) {
-                            $galleries = $repeater["vision_galleries"];
-                        ?>
+                            if (have_rows('vision_section_gallery')) {
+                                while (have_rows('vision_section_gallery')) {
+                                    the_row();
+                                    $galleries = get_sub_field('vision_section_gallery_item');
+                                 ?>
                             <div class="mySlides">
 
                                 <div class="row">
@@ -214,6 +210,7 @@ get_header();
                             </div>
                         <?php
                         }
+                    }
                         ?>
 
 
@@ -234,54 +231,42 @@ get_header();
 
                 </div>
         </div>
-    <?php } ?>
     </div>
 </section>
 
 
 <section class="who-we-are pt-0 pb-0">
     <div class="container">
-        <?php
-        $visionsect = get_field('our_mission_section');
-        if ($visionsect) {
-        ?>
             <div class="row justify-content-center">
 
                 <div class="col-lg-5">
-                    <img src="<?php echo $visionsect['mission_image']; ?>" class="img-fluid" alt="">
+                    <img src="<?php echo get_field('message_section_image'); ?>" class="img-fluid" alt="">
 
                 </div>
 
                 <div class="col-lg-5 d-lg-flex align-items-center">
                     <div class="content">
-                        <h3>Our Message</h3>
-                        <p><?php echo $visionsect['mission_description']; ?></p>
+                        <h3><?php echo get_field('message_section_heading'); ?></h3>
+                        <p><?php echo get_field('message_section_description'); ?></p>
                     </div>
                 </div>
             </div>
-        <?php } ?>
     </div>
 </section>
 
 <section class="who-we-are">
     <div class="container">
-        <?php
-        $valuesect = get_field('our_values_section');
-        if ($valuesect) {
-        ?>
             <div class="row justify-content-center">
                 <div class="col-lg-5 d-lg-flex align-items-center">
                     <div class="content">
-                        <h3>Our Values</h3>
-                        <p id="visionsmall"><?php echo $valuesect['values_description']; ?></p>
+                        <h3><?php echo get_field('values_section_heading'); ?></h3>
+                        <p id="visionsmall"><?php echo get_field('values_section_description'); ?></p>
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <img src="<?php echo $valuesect['values_images']; ?>" class="new-img" alt="">
-
+                    <img src="<?php echo get_field('values_section_image'); ?>" class="new-img" alt="">
                 </div>
             </div>
-        <?php } ?>
     </div>
     </div>
 </section>

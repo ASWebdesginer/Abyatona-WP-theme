@@ -1,5 +1,13 @@
 <?php
 define("PATHLOCAL", __DIR__);
+
+//svg allow
+function allow_svg_upload($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_upload');
+
 // acf options pages
 add_action('acf/init', 'my_acf_op_init');
 function my_acf_op_init() {

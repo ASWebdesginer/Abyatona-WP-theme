@@ -14,17 +14,16 @@ get_header();
 
 
 <body>
+    <!-- hero start -->
     <section class="banner" id="banner">
         <div class="container">
             
 <?php include(PATHLOCAL.'/navbar.php'); ?>
             <div class="content">
                 <h1>
-                    <?php echo esc_html(get_field('hero_sect_text')); ?>
+                    <?php echo esc_html(get_field('hero_section_heading')); ?>
                 </h1>
             </div>
-
-
             <div class="row">
                 <div class="col-lg-9">
                     <section id="slider">
@@ -34,15 +33,15 @@ get_header();
                                 <div class="owl-carousel">
                                     <?php
                                     // Check rows exists.
-                                    if (have_rows('hero_sect_images')) :
+                                    if (have_rows('hero_slider_items')) :
 
                                         // Loop through rows.
-                                        while (have_rows('hero_sect_images')) : the_row();
+                                        while (have_rows('hero_slider_items')) : the_row();
 
                                             // Load sub field value.
-                                            $building_name = get_sub_field('building_name');
-                                            $building_type = get_sub_field('building_type');
-                                            $building_image = get_sub_field('building_image');
+                                            $building_name = get_sub_field('slider_item_name');
+                                            $building_type = get_sub_field('slider_item_type');
+                                            $building_image = get_sub_field('slider_item_image');
                                             // Do something...
                                     ?>
                                             <div class="slider-card">
@@ -62,9 +61,6 @@ get_header();
                                     // Do something...
                                     endif;
                                     ?>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -73,7 +69,8 @@ get_header();
             </div>
         </div>
     </section>
-
+    <!-- hero end -->
+    <!-- About  start -->
     <section class="about" id="about">
         <div class="container">
             <img src="<?php echo get_template_directory_uri(); ?>/img/Vector.png" class="vector-img" alt="vector" />
@@ -86,18 +83,15 @@ get_header();
 
             <div class="content">
                 <div class="row">
-                    <?php
-                    $hero = get_field('experience_section');
-                    if ($hero) :
-                    ?>
                         <div class="col-lg-6">
                             <h2>
-                                <?php echo $hero['section_title']; ?>
+                                <?php echo get_field('about_section_heading'); ?>
                             </h2>
-                            <?php echo $hero['section_description']; ?>
+                            <?php echo get_field('about_section_description'); ?>
 
                             <button>
-                                know more <img src="<?php echo get_template_directory_uri(); ?>/img/up-arrow.png" alt="arrow" />
+                                <a href="<?php echo get_field('about_section_button_url'); ?>">
+                            <?php echo get_field('about_section_button_text'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/up-arrow.png" alt="arrow" /></a>
                             </button>
 
                             <div class="position-logo">
@@ -109,7 +103,7 @@ get_header();
                         <div class="col-lg-6">
                             <div class="img-slider">
                                 <?php
-                                $images = $hero['section_slider_gallery'];
+                                $images = get_field('about_section_gallery');
                                 if ($images) : ?>
                                     <div id="demo" class="carousel slide" data-ride="carousel">
                                         <!-- Indicators -->
@@ -150,12 +144,12 @@ get_header();
                             </div>
                         </div>
                 </div>
-            <?php endif; ?>
 
             </div>
         </div>
     </section>
-
+  <!-- About  end -->
+    <!-- CPT Project   start -->
     <section class="build">
         <div class="container">
             <img src="<?php echo get_template_directory_uri(); ?>/img/Vector.png" class="vector-img vector-img-mobile" alt="vector" />
@@ -166,7 +160,8 @@ get_header();
             <?php include(__DIR__ . '/templateparts/projectCard.php'); ?>
         </div>
     </section>
-
+   <!-- CPT Project   end -->
+    <!-- Mission Vision  start -->
     <section class="mission">
         <img src="<?php echo get_template_directory_uri(); ?>/img/abyatona.png" class="mission-logo" alt="">
         <img src="<?php echo get_template_directory_uri(); ?>/img/Vector 4.png" class="mi-vactor" alt="">
@@ -176,8 +171,8 @@ get_header();
             <div class="row">
                         <div class="col-lg-4">
                             <div class="mission-box">
-                                <h3>Our Vision</h3>
-                                <p><?php echo get_field('vision_description') ?></p>
+                                <h3><?php echo get_field('section_heading') ?></h3>
+                                <p><?php echo get_field('section_description') ?></p>
                             </div>
                         </div>
             </div>
@@ -187,14 +182,15 @@ get_header();
                 <div class="col-lg-7"></div>
                     <div class="col-lg-5">
                         <div class="mission-box mission-mobile">
-                            <h3>Our Mission</h3>
-                            <p><?php echo get_field('vision_description') ?></p>
+                            <h3><?php echo get_field('mission_section_heading') ?></h3>
+                            <p><?php echo get_field('mission_section_description') ?></p>
                         </div>
                     </div>
             </div>
         </div>
     </section>
-
+   <!-- Mission   Vision end -->
+      <!-- Partner   start -->
     <section class="partner">
         <img src="<?php echo get_template_directory_uri(); ?>/img/Vector.png" class="vector-img" alt="vector" />
         <div class="container">
@@ -226,7 +222,7 @@ get_header();
             </div>
         </div>
     </section>
-
+   <!-- Mission   start -->
 <div class="arabic">
     <section class="banner" id="banner">
         <div class="container">

@@ -13,7 +13,7 @@ get_header();
 ?>
 
 
-  <section class="new-banner" id="new-banner">
+  <section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background');?>)">
     <div class="container">
     <?php include(PATHLOCAL.'/navbar.php'); ?>
 

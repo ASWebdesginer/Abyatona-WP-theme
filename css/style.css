@@ -1155,7 +1155,9 @@ select {
   color: #182D46;
   font-family: 'Galada', cursive;
 }
-
+h3#ourservicemih3 {
+  max-width: 350px;
+}
 .our-services .content h5 {
   color: #B8833B;
   padding: 10px 0px;
