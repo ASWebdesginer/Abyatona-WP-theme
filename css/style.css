@@ -134,7 +134,9 @@ padding: 0px 10px;
   color: #fff;
   font-size: 20px;
 }
-
+#singphed{
+  max-width: 300px;
+}
 .lily-banner .slider .owl-item.active.center .slider-card {
   background: #B8833B !important;
 }
@@ -969,7 +971,6 @@ select {
 } */
 
 .project-box{
-  background-image: url(../img/image-4.png);
   height: 320px;
   background-size: cover;
   background-repeat: no-repeat;

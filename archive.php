@@ -16,8 +16,6 @@ get_header();
       <?php the_archive_title( '<h1 class="page-title">', '</h1>' );?>
       </div>
 
-
-
     </div>
   </section>
     <?php include(PATHLOCAL.'/templates/templateparts/ArchieveCard.php'); ?>

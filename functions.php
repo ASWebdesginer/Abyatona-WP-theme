@@ -117,6 +117,7 @@ function register_project_cpt(){
         'publicly_queryable' => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
+        'show_in_nav_menus'  => true,
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'project' ),
         'capability_type'    => 'post',

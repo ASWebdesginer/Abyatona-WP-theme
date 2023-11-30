@@ -57,7 +57,6 @@
               <a href="">
                 <button class="contact-btn">Contact us</button>
               </a>
-
               <form action="" method="POST">
                 <select class="lang-select" name="locale" onchange="this.form.submit()">
 
@@ -69,7 +68,9 @@
 
               </form>
             </li>
-
+            <!-- <li>
+            <?php /* echo do_shortcode('[gtranslate]');*/?>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -130,7 +131,6 @@
               <a href="">
                 <button class="contact-btn">Contact us</button>
               </a>
-
               <form action="" method="POST">
                 <select class="lang-select" name="locale" onchange="this.form.submit()">
 
@@ -142,7 +142,9 @@
 
               </form>
             </li>
-
+            <li>
+            <?php echo do_shortcode('[gtranslate]');?>
+            </li>
           </ul>
         </nav>
       </div>

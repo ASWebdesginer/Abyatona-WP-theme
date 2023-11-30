@@ -90,7 +90,7 @@ get_header();
                             <?php echo get_field('about_section_description'); ?>
 
                             <button>
-                                <a href="<?php echo get_field('about_section_button_url'); ?>">
+                                <a href="<?php echo get_field('about_section_button_url'); ?>" style="color:white;">
                             <?php echo get_field('about_section_button_text'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/up-arrow.png" alt="arrow" /></a>
                             </button>
 
@@ -191,8 +191,9 @@ get_header();
     </section>
    <!-- Mission   Vision end -->
       <!-- Partner   start -->
-    <section class="partner">
+      <section class="partner">
         <img src="<?php echo get_template_directory_uri(); ?>/img/Vector.png" class="vector-img" alt="vector" />
+         
         <div class="container">
             <div class="heading">
                 <h3>Our Partners</h3>
@@ -221,8 +222,8 @@ get_header();
             endif;?>
             </div>
         </div>
-    </section>
-   <!-- Mission   start -->
+
+   <!-- partner   start -->
 <div class="arabic">
     <section class="banner" id="banner">
         <div class="container">

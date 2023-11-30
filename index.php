@@ -11,6 +11,7 @@ get_header();
 
     <?php include(PATHLOCAL.'/navbarv2.php'); ?>
     <?php include(PATHLOCAL.'/templates/templateparts/projectCard.php'); ?>
+    <?php include(PATHLOCAL.'/templates/templateparts/partnerSection.php'); ?>
 
   <?php 
   get_footer(); ?>
