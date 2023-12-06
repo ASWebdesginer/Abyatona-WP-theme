@@ -129,13 +129,21 @@ get_header();
     }
 </style>
 
-
-<section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background');?>)">
+<?php 
+// check language
+$selected_locale = '';
+if (isset($_SESSION['locale'])) {
+    $selected_locale = $_SESSION['locale'];
+}
+if ($selected_locale === 'en' || $selected_locale === '') {
+?>
+<!-- hero start -->
+<section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background'); ?>)">
     <div class="container">
         <?php include(PATHLOCAL . '/navbar.php'); ?>
         <div class="content">
             <h1>
-            <?php echo get_field('hero_heading'); ?>
+                <?php echo get_field('hero_heading'); ?>
             </h1>
         </div>
 
@@ -143,8 +151,8 @@ get_header();
 
     </div>
 </section>
-
-
+<!-- hero end -->
+<!-- goal start -->
 <section class="tab-align">
     <div class="container">
         <img src="<?php echo get_template_directory_uri(); ?>/img/Vector30.png" class="vector-img-30" alt="vector">
@@ -171,28 +179,29 @@ get_header();
     </div>
 </section>
 
-
+<!-- goal end -->
+<!-- vision start -->
 <section class="who-we-are">
     <div class="container">
         <div class="row justify-content-center">
-                <div class="col-lg-5 d-lg-flex align-items-center">
-                    <div class="content">
-                        <h3><?php echo get_field('vision_section_heading'); ?></h3>
-                        <p><?php echo get_field('vision_section_description'); ?></p>
-                    </div>
+            <div class="col-lg-5 d-lg-flex align-items-center">
+                <div class="content">
+                    <h3><?php echo get_field('vision_section_heading'); ?></h3>
+                    <p><?php echo get_field('vision_section_description'); ?></p>
                 </div>
+            </div>
 
-                <div class="col-lg-5">
-                    <!-- <img src="img/Group 1000007167.png"  class="img-fluid" alt=""> -->
+            <div class="col-lg-5">
+                <!-- <img src="img/Group 1000007167.png"  class="img-fluid" alt=""> -->
 
 
-                    <div class="slideshow-container">
-                        <?php
-                            if (have_rows('vision_section_gallery')) {
-                                while (have_rows('vision_section_gallery')) {
-                                    the_row();
-                                    $galleries = get_sub_field('vision_section_gallery_item');
-                                 ?>
+                <div class="slideshow-container">
+                    <?php
+                    if (have_rows('vision_section_gallery')) {
+                        while (have_rows('vision_section_gallery')) {
+                            the_row();
+                            $galleries = get_sub_field('vision_section_gallery_item');
+                    ?>
                             <div class="mySlides">
 
                                 <div class="row">
@@ -208,9 +217,157 @@ get_header();
                                 </div>
 
                             </div>
-                        <?php
+                    <?php
                         }
                     }
+                    ?>
+
+
+                </div>
+                <br>
+
+                <div style="text-align:center;transform: translateY(-30px);">
+                    <div class="dot" onclick="currentSlide(1)">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/Group 1000007167.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B">
+                    </div>
+                    <div class="dot" onclick="currentSlide(2)">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/new.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B; margin-left:-15px;">
+                    </div>
+                    <div class="dot" onclick="currentSlide(3)"><img src="<?php echo get_template_directory_uri(); ?>/img/Screenshot 2023-11-06 152237.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B; margin-left:-15px;"></div>
+                    <!-- <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span>  -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- vision end -->
+<!-- message start -->
+<section class="who-we-are pt-0 pb-0">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5">
+                <img src="<?php echo get_field('message_section_image'); ?>" class="img-fluid" alt="">
+
+            </div>
+
+            <div class="col-lg-5 d-lg-flex align-items-center">
+                <div class="content">
+                    <h3><?php echo get_field('message_section_heading'); ?></h3>
+                    <p><?php echo get_field('message_section_description'); ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- message end  -->
+<!-- value start -->
+<section class="who-we-are">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 d-lg-flex align-items-center">
+                <div class="content">
+                    <h3><?php echo get_field('values_section_heading'); ?></h3>
+                    <p id="visionsmall"><?php echo get_field('values_section_description'); ?></p>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <img src="<?php echo get_field('values_section_image'); ?>" class="new-img" alt="">
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- value end -->
+<?php }
+else{
+
+?>
+<!-- Arabic  start -->
+<div class="arabic">
+<!-- hero start -->
+    <section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background_arabic'); ?>)">
+        <div class="container">
+        <?php include(PATHLOCAL . '/navbar.php'); ?>
+            <div class="content">
+                <h1>
+                    <?php echo get_field('hero_heading_arabic'); ?>
+                </h1>
+            </div>
+        </div>
+    </section>
+<!-- hero end -->
+
+<!-- goal start -->
+    <section class="tab-align">
+        <div class="container">
+            <div class="heading">
+                <h3> <?php echo get_field('goal_section_sub_heading_arabic'); ?></h3>
+                <h5> <?php echo get_field('goal_section_heading_arabic'); ?></h5>
+            </div>
+            <div class="row">
+                <?php
+                if (have_rows('goal_innovation_points_arabic')) {
+                    while (have_rows('goal_innovation_points_arabic')) {
+                        the_row();
+                        $goaldescar = get_sub_field('goal_innovation_point_description'); ?>
+                        <div class="col-lg-3">
+                            <div class="content">
+                                <p><?php echo $goaldescar; ?></p>
+                            </div>
+                        </div>
+                <?php
+                    }
+                } ?>
+            </div>
+        </div>
+    </section>
+<!-- goal end -->
+
+<!-- vision start -->
+    <section class="who-we-are">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 d-lg-flex align-items-center">
+                    <div class="content">
+                        <h3><?php echo get_field('vision_section_heading_arabic'); ?></h3>
+                        <p><?php echo get_field('vision_section_description_arabic'); ?></p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+
+                    <!-- <img src="img/Group 1000007167.png"  class="img-fluid" alt=""> -->
+
+
+                    <div class="slideshow-container">
+                        <?php
+                        if (get_field('vision_section_gallery_arabic')) {
+                            if (have_rows('vision_section_gallery_arabic')) {
+                                while (have_rows('vision_section_gallery_arabic')) {
+                                    the_row();
+                                    $galleriesar = get_sub_field('vision_section_gallery_item');
+                        ?>
+                                    <div class="mySlides">
+
+                                        <div class="row">
+                                            <?php
+                                            foreach ($galleriesar as $index => $gallery) {
+                                            ?>
+                                                <div class="col-lg-4 col-4 pr-0">
+                                                    <img src="<?php echo $gallery['url']; ?>" class="first-slides <?php echo ($index == 1) ? 'third-img' : " "; ?> " alt="">
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+
+                                    </div>
+                        <?php
+                                }
+                            }
+                        }
                         ?>
 
 
@@ -230,208 +387,49 @@ get_header();
                     </div>
 
                 </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="who-we-are pt-0 pb-0">
-    <div class="container">
-            <div class="row justify-content-center">
-
-                <div class="col-lg-5">
-                    <img src="<?php echo get_field('message_section_image'); ?>" class="img-fluid" alt="">
-
-                </div>
-
-                <div class="col-lg-5 d-lg-flex align-items-center">
-                    <div class="content">
-                        <h3><?php echo get_field('message_section_heading'); ?></h3>
-                        <p><?php echo get_field('message_section_description'); ?></p>
-                    </div>
-                </div>
-            </div>
-    </div>
-</section>
-
-<section class="who-we-are">
-    <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 d-lg-flex align-items-center">
-                    <div class="content">
-                        <h3><?php echo get_field('values_section_heading'); ?></h3>
-                        <p id="visionsmall"><?php echo get_field('values_section_description'); ?></p>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <img src="<?php echo get_field('values_section_image'); ?>" class="new-img" alt="">
-                </div>
-            </div>
-    </div>
-    </div>
-</section>
-<div class="arabic">
-
-    <section class="new-banner" id="new-banner">
-        <div class="container">
-            <div class="content">
-                <h1>
-                    الرؤية والرسالة
-                </h1>
             </div>
         </div>
     </section>
-
-    <section class="tab-align">
-        <div class="container">
-            <div class="heading">
-                <h3>الأهداف</h3>
-                <h5>السعي من خلال الابتكار المحدد</h5>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="content">
-                        <p>تركز شركة أبياتنا على الاستثمارات الواعدة في الصناعات الذكية.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="content">
-                        <p>تقديم الأفضلية في بناء فريق سعودي مبتكر لقيادة مجموعة شركات أبياتنا في فترة زمنية محددة تبلغ ثلاث سنوات.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="content">
-                        <p>بناء شراكة عمل فعالة من خلال خلق بيئة عمل منتجة تعزز من لغة الاتصال ذات الثقة العالية.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="content">
-                        <p>تطوير نهج لتعزيز أصول الشركة وزيادة الإيرادات المستدامة بهدف الحفاظ على التوازن داخل مجموعة أبياتنا.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="who-we-are">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 d-lg-flex align-items-center">
-                    <div class="content">
-                        <h3>رؤيتنا</h3>
-                        <p>تمكين المواطنين للعيش بشكل مستدام وتوفير حلاً صحيًا للطاقة في المملكة العربية السعودية.</p>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-
-                    <!-- <img src="img/Group 1000007167.png"  class="img-fluid" alt=""> -->
-
-
-                    <div class="slideshow-container">
-                        <div class="mySlides">
-
-                            <div class="row">
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/new.png" class="first-slides" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/image-4.png" class="first-slides third-img" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4">
-                                    <img src="img/banner.jpg" class="first-slides" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="mySlides">
-
-                            <div class="row">
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/Rectangle2.png" class="first-slides" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/new.png" class="first-slides third-img" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4">
-                                    <img src="img/about.png" class="first-slides" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="mySlides">
-
-                            <div class="row">
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/new.png" class="first-slides" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4 pr-0">
-                                    <img src="img/image-4.png" class="first-slides third-img" alt="">
-                                </div>
-                                <div class="col-lg-4 col-4">
-                                    <img src="img/banner.jpg" class="first-slides" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <br>
-
-                    <div style="text-align:center;transform: translateY(-30px);">
-                        <div class="dot" onclick="currentSlide(1)">
-                            <img src="img/Group 1000007167.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B">
-                        </div>
-                        <div class="dot" onclick="currentSlide(2)">
-                            <img src="img/new.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B; margin-left:-15px;">
-                        </div>
-                        <div class="dot" onclick="currentSlide(3)"><img src="img/Screenshot 2023-11-06 152237.png" style="border-radius: 50%; width: 40px; height: 40px; border: 2px solid #B8833B; margin-left:-15px;"></div>
-                        <!-- <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span>  -->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
+<!-- vision end -->
+<!-- message start -->
     <section class="who-we-are pt-0 pb-0">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <img src="img/Screenshot 2023-11-06 152237.png" class="img-fluid" alt="">
+                    <img src="<?php echo get_field('message_section_image_arabic'); ?>" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-5 d-lg-flex align-items-center">
                     <div class="content">
-                        <h3>رسالتنا</h3>
-                        <p>منح الأولوية لاحتياجات وتطلعات مشاريعنا، نضمن أن مفهوم المنزل الآمن يتوافق مع رؤيتك لمستقبل أخضر.</p>
+                        <h3><?php echo get_field('message_section_heading_arabic'); ?></h3>
+                        <p><?php echo get_field('message_section_description_arabic'); ?></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+<!-- message end -->
+<!-- value start -->
     <section class="who-we-are">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5 d-flex align-items-center">
                     <div class="content">
-                        <h3>قيمنا</h3>
-                        <p>الابتكار - العيش الأخضر - المسؤولية الاجتماعية - التوسع في النمو</p>
+                       <h3><?php echo get_field('values_section_heading_arabic'); ?></h3>
+                        <p><?php echo get_field('values_section_description_arabic'); ?></p>
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <img src="img/new.png" class="new-img" alt="">
+                    <img src="<?php echo get_field('values_section_image_arabic'); ?>" class="new-img" alt="">
                 </div>
             </div>
         </div>
     </section>
+    <!-- value end -->
 </div>
 
 </div>
-
+<?php }?>
+<!-- arabic end -->
 
 <script>
     let slideIndex = 1;

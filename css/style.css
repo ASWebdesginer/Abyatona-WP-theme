@@ -1078,7 +1078,7 @@ select {
 
 .contact-map img{
   width: 100%;
-  height: 545px;
+  height: 585px;
 }
 
 .contact{
@@ -1637,8 +1637,8 @@ height: auto;
 }
 
 }
-.arabic,.owl-theme .owl-nav [class*=owl-]{
+/* .arabic,.owl-theme .owl-nav [class*=owl-]{
   display: none !important;
-}
+} */
 
 

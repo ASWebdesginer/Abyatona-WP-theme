@@ -1,6 +1,7 @@
 <?php
 define("PATHLOCAL", __DIR__);
-show_admin_bar(true);
+// show_admin_bar(true);
+session_start();
 
 //svg allow
 function allow_svg_upload($mimes) {
@@ -27,6 +28,12 @@ function my_acf_op_init() {
         $child = acf_add_options_page(array(
             'page_title'  => __('Company stats'),
             'menu_title'  => __('companystats'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+        // Add sub page.
+        $child2 = acf_add_options_page(array(
+            'page_title'  => __('Footer Options'),
+            'menu_title'  => __('footeroptions'),
             'parent_slug' => $parent['menu_slug'],
         ));
     }
@@ -134,6 +141,7 @@ function register_project_cpt(){
 // register custom menu
 function register_custom_menu() {
     register_nav_menu('custom_menu', __('Custom Menu', 'your_theme_textdomain'));
+    register_nav_menu('custom_menu_ar', __('Custom Menu Arabic', 'your_theme_textdomain'));
 }
 add_action('init', 'register_custom_menu');
 
@@ -143,6 +151,38 @@ class Custom_Menu_Walker extends Walker_Nav_Menu {
     } 
 }
 
+// langauge switcher 
+add_action('init', 'handle_language_switch');
 
+function handle_language_switch() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['locale'])) {
+        // Sanitize and set the user's selected language
+        $selected_locale = sanitize_text_field($_POST['locale']);
 
+        // Store the selected language in a session variable
+        $_SESSION['locale'] = $selected_locale;
 
+        // Redirect the user to the same page
+        $current_url = $_SERVER['REQUEST_URI'];
+        wp_redirect(home_url($current_url));
+        exit();
+    }
+}
+
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
+
+function theme_enqueue_styles() {
+    // Start the session if not already started
+    if (!session_id()) {
+        session_start();
+    }
+
+    // Check the session for the selected locale and enqueue appropriate CSS file
+    if (isset($_SESSION['locale']) && $_SESSION['locale'] == 'ar') {
+        // Enqueue Arabic-specific CSS file
+        wp_enqueue_style('arabic-styles', get_template_directory_uri() . '/css/language.css');
+    } else {
+        // Enqueue default (English) CSS file
+        wp_enqueue_style('english-styles', get_template_directory_uri() . '/css/style.css');
+    }
+}

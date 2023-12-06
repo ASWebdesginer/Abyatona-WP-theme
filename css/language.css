@@ -1041,7 +1041,7 @@ select {
 
 .contact-map img{
   width: 100%;
-  height: 521px;
+  height: 560px;
 }
 
 .contact{
@@ -1545,4 +1545,50 @@ height: auto;
   margin-top: 10px;
 }
 
+}
+.form{
+  background: #182D46;
+  padding: 30px;
+  border-radius: 30px 0px 0px 30px;
+}
+.form ul{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.form label{
+  color: #fff;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+
+}
+
+.form input{
+ width: 100%;
+ border:none;
+ outline: none !important;
+ border-bottom: 1px solid #fff;
+ background: none;
+ margin-bottom: 24px;
+ color: rgb(209, 209, 209);
+}
+#wpcf7-f517-o1 p{
+  text-align: right;
+}
+.submit{
+  border: 1px solid #fff !important;
+  width: 40% !important;
+  color: #B8833B;
+  padding: 10px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.form i{
+  color: #B8833B;
+  padding-right: 10px;
+}
+.form a{
+  color: #fff;
+  padding-right: 10px;
 }
