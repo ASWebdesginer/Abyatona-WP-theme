@@ -15,7 +15,7 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en' ) {
 ?>
 
 <body>
@@ -25,7 +25,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
       <?php include(PATHLOCAL . '/navbar.php'); ?>
 
       <div class="content">
-        <img src="img/wath.png" alt="">
+        <img src="<?php echo esc_url(get_field('project_logo')); ?>" alt="">
         <h1>
           <?php echo the_title(); ?>
         </h1>
@@ -45,7 +45,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                   <div class="slider">
                     <div class="owl-carousel">
                       <?php
-                      // Loop through rows.
+                      // Loop through rows.cont
 
                       while (have_rows('hero_slider_items')) : the_row();
                         if (get_sub_field('slider_item_name') && get_sub_field('slider_item_type') && get_sub_field('slider_item_image')) {
@@ -78,7 +78,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                   ?>
                     </div>
 
-                    <button class="button-newly"><a href=" <?php echo esc_html(get_field('hero_section_button_link')); ?>" style="color:white;z-index:999;"> <?php echo esc_html(get_field('hero_section_button_text')); ?></a></button>
+                    <button class="button-newly" type="button" data-toggle="modal" data-target="#exampleModal"> <?php echo esc_html(get_field('hero_section_button_text')); ?></button>
                   </div>
 
             </div>
@@ -105,17 +105,19 @@ if ($selected_locale === 'en' || $selected_locale === '') {
             <p><?php echo the_field('project__description'); ?></p>
             <ul class="d-flex mt-4 align-items-center">
               <li>
+                  <a href="<?php echo  the_field('brochure_link'); ?>" style="color:#212529;" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/book.svg" alt="">
                 <span><?php echo the_field('brochure_heading'); ?></span>
+                </a>
               </li>
               <li>
-                <a href="<?php echo  the_field('brochure_link'); ?>" style="color:white;">
-                  <button class="button-newly-new"><span>3D</span><br> Wahat AlDamam 3D </a></button>
+                <a href="<?php echo  the_field('map_3d'); ?>" style="color:white;" target="_blank">
+                  <button class="button-newly-new"><span>3D</span><br> <?php echo the_field("3d_map_button_text");?> </a></button>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5" id="aboutimageabs">
           <img src="<?php echo  the_field('about_project_image'); ?>" class="little-img" alt="">
         </div>
       </div>
@@ -126,7 +128,9 @@ if ($selected_locale === 'en' || $selected_locale === '') {
     <div class="container">
       <div class="map-location">
         <h3><?php echo  the_field('map_section_title'); ?></h3>
+        <a href="<?php echo  the_field('project_location_url'); ?>" target="_blank">
         <img src="<?php echo  the_field('project_location_map_image'); ?>" class="img-fluid" alt="">
+        </a>
       </div>
     </div>
   </section>
@@ -213,11 +217,34 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
     </div>
   </section>
+  <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+         <?php $picon = get_field('about_project_icon_arabic');
+            if ($picon) {
+            ?>
+              <img src="<?php echo $picon; ?>" class="img-fluid mx-auto" alt="">
+            <?php
+            }
+            ?>
+      </div>
+      <div class="modal-body">
+          <div class="w-75 mx-auto">
+          <?php echo do_shortcode('[wpforms id="603"]');?>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
   <?php
 
 // English content
 
-} elseif ($selected_locale === 'ar') {
+} elseif ($selected_locale === 'ar' || $selected_locale === '') {
 // Arabic content
 ?>
   <!-- arabice start -->
@@ -226,7 +253,9 @@ if ($selected_locale === 'en' || $selected_locale === '') {
       <?php include(PATHLOCAL . '/navbar.php'); ?>
 
       <div class="content">
-        <img src="img/wath.png" alt="">
+          <div class="ban-images">
+             <img src="<?php echo esc_url(get_field('project_logo')); ?>" alt="">
+          </div>
         <h1>
           <?php echo get_field('hero_section_title_arabic'); ?>
         </h1>
@@ -283,7 +312,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                     </div>
 
                     <div class="d-flex justify-content-end">
-                      <button class="button-newly" ><?php echo get_field('hero_section_button_text_arabic'); ?></button>
+                      <button class="button-newly"  type="button" data-toggle="modal" data-target="#exampleModalar"><?php echo get_field('hero_section_button_text_arabic'); ?></button>
                     </div>
                   </div>
 
@@ -312,17 +341,19 @@ if ($selected_locale === 'en' || $selected_locale === '') {
             <p><?php echo the_field('project__description_arabic'); ?></p>
             <ul class="d-flex mt-4 align-items-center">
               <li>
+                    <a href="<?php echo  the_field('brochure_link'); ?>" style="color:#212529;" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/book.svg" alt="">
                 <span><?php echo the_field('brochure_heading_arabic'); ?></span>
+                </a>
               </li>
               <li>
-                <a href="<?php echo  the_field('brochure_link'); ?>" style="color:white;">
-                  <button class="button-newly-new"><span>3D</span><br> Wahat AlDamam 3D </a></button>
+                <a href="<?php echo  the_field('map_3d'); ?>" style="color:white;" target="_blank">
+                  <button class="button-newly-new"><span>3D</span><br> <?php echo the_field("3d_map_button_text_arabic");?> </a></button>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5" id="aboutimageabs">
           <img src="<?php echo  the_field('about_project_image_arabic'); ?>" class="little-img" alt="">
         </div>
       </div>
@@ -331,9 +362,11 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
   <section class="map">
     <div class="container">
-      <div class="map-location">
+      <div class="map-location text-center">
         <h3><?php echo  the_field('map_section_title_arabic'); ?></h3>
+          <a href="<?php echo  the_field('project_location_url'); ?>" target="_blank">
         <img src="<?php echo  the_field('project_location_map_image_arabic'); ?>" class="img-fluid" alt="">
+        </a>
       </div>
     </div>
   </section>
@@ -422,5 +455,25 @@ if ($selected_locale === 'en' || $selected_locale === '') {
   </section>
 
   <!-- arabice start -->
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+         <?php $picon = get_field('about_project_icon_arabic');
+            if ($picon) {
+            ?>
+              <img src="<?php echo $picon; ?>" class="img-fluid mx-auto" alt="">
+            <?php
+            }
+            ?>
+      </div>
+      <div class="modal-body">
+          <div class="w-75 mx-auto text-right">
+          <?php echo do_shortcode('[wpforms id="607"]	');?>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
   <?php } get_footer(); ?>

@@ -18,22 +18,21 @@ if (!session_id()) {
             <div class="ourCliendslider">
                 <div id="marketingBannerSlider1" class="marketingBannerSlider1 owl-carousel owl-theme">
                     <?php
+                    $translate=false;
+                        $selected_locale = '';
+                        if (isset($_SESSION['locale'])) {
+                            $selected_locale = $_SESSION['locale'];
+                        }
                     // Check the session for the selected locale and enqueue appropriate CSS file
-                    if (isset($_SESSION['locale']) && $_SESSION['locale'] == 'ar') {
+                    if ($selected_locale === '' || $selected_locale === 'ar') {
                         // Enqueue Arabic-specific CSS file
+                        $translate=true;
+                    }
                         $args = array(
                             'post_type' => 'project',  
-                            'category_name' => 'arabic', 
                             'posts_per_page' => -1
                         );
-                    }
-                    else{
-                        $args = array(
-                            'post_type' => 'project',
-                            'category_name' => 'english', 
-                            'posts_per_page' => -1
-                        );  
-                    }
+                    
                     $theprojects = new WP_Query($args);
 
                     if ($theprojects->have_posts()) {
@@ -48,8 +47,8 @@ if (!session_id()) {
 
                                     <div class="content">
                                         <div>
-                                            <h3><?php the_title(); ?></h3>
-                                            <p><?php echo esc_html(get_field('project_type')); ?></p>
+                                            <h3><?php  echo ($translate) ? get_field("hero_section_title_arabic") : the_title(); ?></h3>
+                                            <p><?php echo ($translate) ? esc_html(get_field('project_type_arabic')) :esc_html(get_field('project_type')); ?></p>
                                         </div>
                                     </div>
 

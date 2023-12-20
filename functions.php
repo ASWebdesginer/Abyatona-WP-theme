@@ -176,9 +176,12 @@ function theme_enqueue_styles() {
     if (!session_id()) {
         session_start();
     }
-
+    $selected_locale = '';
+    if (isset($_SESSION['locale'])) {
+        $selected_locale = $_SESSION['locale'];
+    }
     // Check the session for the selected locale and enqueue appropriate CSS file
-    if (isset($_SESSION['locale']) && $_SESSION['locale'] == 'ar') {
+    if ($selected_locale === 'ar' || $selected_locale === '') {
         // Enqueue Arabic-specific CSS file
         wp_enqueue_style('arabic-styles', get_template_directory_uri() . '/css/language.css');
     } else {

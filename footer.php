@@ -3,7 +3,7 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') { ?>
+if ($selected_locale === 'en') { ?>
 
     <footer class="footer-section">
         <div class="container">
@@ -138,11 +138,12 @@ if ($selected_locale === 'en' || $selected_locale === '') { ?>
                                 <p>Subscribe to get latest property, blog news from us</p>
                             </div>
                             <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="text" placeholder="Email Address">
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </form>
-                            </div>
+                                <?php echo do_shortcode('[wpforms id="678" title="false"]');?>
+                            <!--    <form action="#">-->
+                            <!--        <input type="text" placeholder="Email Address">-->
+                            <!--        <button><i class="fa-solid fa-arrow-right"></i></button>-->
+                            <!--    </form>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -153,7 +154,7 @@ if ($selected_locale === 'en' || $selected_locale === '') { ?>
 
     // English content
 
-} elseif ($selected_locale === 'ar') {
+} elseif ($selected_locale === 'ar'  || $selected_locale === '') {
     // Arabic content
 ?>
 
@@ -286,16 +287,17 @@ if ($selected_locale === 'en' || $selected_locale === '') { ?>
                         <div class="col-xl-3 col-lg-3  col-md-6 mb-50">
                             <div class="footer-widget">
                                 <div class="footer-widget-heading">
-                                    <h3>Subscribe</h3>
+                                    <h3>اشترك</h3>
                                 </div>
                                 <div class="footer-text mb-25">
-                                    <p>Subscribe to get latest property, blog news from us</p>
+                                    <p>اشترك للحصول على آخر أخبار العقارات والمدونات منا</p>
                                 </div>
                                 <div class="subscribe-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="Email Address">
-                                        <button><i class="fa-solid fa-arrow-right"></i></button>
-                                    </form>
+                                    <?php echo do_shortcode('[wpforms id="686" title="false"]');?>
+                                    <!--<form action="#">-->
+                                    <!--    <input type="text" placeholder="عنوان البريد الإلكتروني">-->
+                                    <!--    <button><i class="fa-solid fa-arrow-right"></i></button>-->
+                                    <!--</form>-->
                                 </div>
                             </div>
                         </div>
@@ -437,7 +439,20 @@ if ($selected_locale === 'en' || $selected_locale === '') { ?>
                         console.log(currentIndex)
                     }
                 });
+                var currenturl= window.location.href;
+                var currenttext="";
+                  jQuery(".mainmenulist").find("li").each(function(){
+                      if($(this).find("a").attr("href")== currenturl){
+                         currenttext= $(this).find("a").text(); 
+                      }
+                  })
+                  if(currenttext !== ""){
+                                     jQuery("#dropdownMenuButton").text(currenttext);
+                  };
+                  jQuery(".subscribe_submit").html('<i class="fa-solid fa-arrow-right"></i>');
+                  
             });
+          
         </script>
         <?php wp_footer(); ?>
 

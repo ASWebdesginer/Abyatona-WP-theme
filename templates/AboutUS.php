@@ -15,7 +15,7 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en') {
 ?>
 
 
@@ -101,7 +101,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
                 }
                 
-                else{
+                else if($selected_locale === 'ar'|| $selected_locale === ''){
                   ?>
 <div class="arabic">
   <section class="new-banner" id="new-banner" style="background-image:url(<?php echo get_field('hero_background_arabic'); ?>)">

@@ -18,21 +18,20 @@ if (!session_id()) {
               <div id="marketingBannerSlider2" class="marketingBannerSlider1 owl-carousel owl-theme">
                     <?php
                     // Check the session for the selected locale and enqueue appropriate CSS file
-                    if (isset($_SESSION['locale']) && $_SESSION['locale'] == 'ar') {
+                      $translate=false;
+                        $selected_locale = '';
+                        if (isset($_SESSION['locale'])) {
+                            $selected_locale = $_SESSION['locale'];
+                        }
+                    // Check the session for the selected locale and enqueue appropriate CSS file
+                    if ($selected_locale === '' || $selected_locale === 'ar') {
                         // Enqueue Arabic-specific CSS file
+                        $translate=true;
+                    }
                         $args = array(
                             'post_type' => 'project',  
-                            'category_name' => 'arabic', 
                             'posts_per_page' => -1
                         );
-                    }
-                    else{
-                        $args = array(
-                            'post_type' => 'project',
-                            'category_name' => 'english', 
-                            'posts_per_page' => -1
-                        );  
-                    }
                     $theprojects = new WP_Query($args);
 
                     if ($theprojects->have_posts()) {
@@ -43,7 +42,7 @@ if (!session_id()) {
                   <div class="our-box">
                     <a href="<?php echo esc_url(get_permalink()) ;?>">
                     <img src="<?php echo esc_url(get_field('project_logo')); ?>" alt="">
-                    <h3><?php the_title(); ?></h3>
+                    <h3><?php echo ($translate) ? get_field("hero_section_title_arabic") : the_title(); ?></h3>
                     <p><?php the_excerpt();?></p>
                     </a>
                   </div>

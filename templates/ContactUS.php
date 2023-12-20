@@ -15,7 +15,7 @@ if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
 include(PATHLOCAL.'/navbarv2.php');
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en') {
 
  ?>
     <section class="contact">
@@ -24,7 +24,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
           <div class="col-lg-5 p-lg-0">
             <div class="form">
               <form action="">
-               <?php echo do_shortcode('[contact-form-7 id="adbabaa" title="Untitled"]');?>
+               <?php echo do_shortcode('[wpforms id="595"]');?>
 
 
                 <ul class="mt-4">
@@ -54,7 +54,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
 // English content
 
-} elseif ($selected_locale === 'ar') {
+} elseif ($selected_locale === 'ar'  || $selected_locale === '') {
 // Arabic content
 ?>
 <div class="arabic">
@@ -65,7 +65,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
           <div class="col-lg-5 p-lg-0">
             <div class="form">
               <form action="">
-              <?php echo do_shortcode('[contact-form-7 id="4e95aba" title="Contact form Arabic"]');?>
+              <?php echo do_shortcode('[wpforms id="598"]');?>
 
                 <ul class="mt-4">
                   

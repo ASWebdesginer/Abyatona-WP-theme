@@ -24,7 +24,9 @@ p{
     /* height: 700px; */
     
 }
-
+header{
+    padding:30px 0px 0px 0px !important;
+}
 
 .dropbtn {
   border-radius: 9px;
@@ -133,6 +135,7 @@ padding: 0px 10px;
 .lily-banner .content p {
   color: #fff;
   font-size: 20px;
+  max-width: 300px;
 }
 #singphed{
   max-width: 300px;
@@ -176,9 +179,9 @@ padding: 0px 10px;
 
 
 
-#header{
-    padding: 30px;
-}
+/*#header{*/
+/*    padding: 30px;*/
+/*}*/
 
 #header nav ul{
     display: flex;
@@ -210,9 +213,11 @@ select {
     background: #45515f;
     outline: none !important;
     color: #fff;
-    padding: 10px 20px 8px 20px;
+    padding: 10px 30px 8px 20px;
     border: none;
     margin-left: 15px !important;
+    background: url(http://abyatona.mi6.global/wp-content/uploads/2023/12/Group-2.png) no-repeat 90% #45515f;
+    appearance: none;
 }
 .contact-btn {
     border-radius: 9px;
@@ -293,7 +298,9 @@ select {
     font-weight: 500;
     margin-top: 15px;
 }
-
+.about .content button a{
+    
+}
 .about .content button img{
     padding-left: 15px;
     width: 32px;
@@ -384,6 +391,7 @@ select {
     left: 150px;
     width: 50%;
     transform: translateY(-50px);
+    z-index:-1;
 }
 .content-logo-new {
     position: absolute;
@@ -398,7 +406,9 @@ select {
 }
 
 
-
+.roundslider img{
+    border-radius:50px;
+}
 
 .slider-box {
     background-image: url(../img/slide.png);
@@ -837,16 +847,23 @@ select {
   }
 
   .who-we-are .content p{
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
     color: #182D46;
+    
 
   }
 #visionsmall{
   max-width: 300px;
 }
   .who-we-are .content h5{
-    font-weight: 400;
-    color: #182D46;
+ color: #182D46;
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
   }
 
 .new-img {
@@ -902,6 +919,7 @@ select {
     position: absolute;
     margin-left: 30px;
     transform: translateY(-70px);
+        z-index: 99999;
 }
 
 .button-newly-new{
@@ -917,7 +935,16 @@ select {
 .button-newly-new span{
   font-size: 25px;
 }
-
+#aboutimageabs{
+    position:relative;
+}
+#aboutimageabs img{
+    height: 620px;
+    position: absolute;
+    width: calc(100% - 30px);
+    transform: translateY(0px);
+    top: -180px;
+}
 .little-img{
   width: 100%;
   transform: translateY(-180px);
@@ -952,6 +979,7 @@ select {
   background: #98733B;
   padding: 5px;
   border-radius: 40px;
+  text-align:center;]
 }
 
 .map-location h3{
@@ -959,6 +987,7 @@ select {
   color: #fff;
   font-weight: 600;
   padding-top: 20px;
+  text-align: start;
 }
 
 /* .project-box{
@@ -1067,7 +1096,7 @@ select {
 
 .lily-about{
   padding: 130px 50px 50px;
-  height: 620px;
+  min-height: 620px;
 }
 
 .partner-new h3{
@@ -1096,24 +1125,32 @@ select {
 }
 
 .form label{
-  color: #fff;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-
+  color: #fff !important;
+  padding-bottom: 0px !important; 
+  margin-bottom: 0px !important;
+  font-size:14px !important;
+  font-weight:400 !important;
 }
 
-.form input{
- width: 100%;
- border:none;
+.form input,.form textarea{
+ width: 100% !important;
+ border:none !important;
  outline: none !important;
- border-bottom: 1px solid #fff;
- background: none;
- margin-bottom: 24px;
- color: rgb(209, 209, 209);
+ border-bottom: 1px solid #fff !important;
+ background: none !important;
+ margin-bottom: 0px !important;
+ color: rgb(209, 209, 209) !important;
+ height:23px !important;
+ outline:none !important;
 }
-
-.submit{
+.form input:focus,.form textarea:focus{
+    border-width:0px 0px 1px 0px !important;
+    box-shadow:none !important;
+    outline:none !important;
+}
+.wpforms-submit{
   border: 1px solid #fff !important;
+  background:transparent !important;
   width: 40% !important;
   color: #B8833B;
   padding: 10px;
@@ -1641,4 +1678,144 @@ height: auto;
   display: none !important;
 } */
 
+.headingvision{
+    color: #B8833B;
+font-family: Poppins;
+font-size: 35px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom:36px;
+}
+ul.mainmenulist {
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: baseline !important;
+    position:relative;
+    padding-left:0px;
+    padding-bottom:15px;
+}
+ul.mainmenulist li{
+    display:flex;
+    width:100%;
+   justify-content: center !important;
+    align-items: center !important;
+     padding:05px 40px 05px 40px;
+     
+}
+ul.mainmenulist li:hover,ul.mainmenulist li a:hover{
+    background: #AA8951 !important;
+}
+ul.mainmenulist li::before{
+      content: "\2022";  
+  color: white;
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em; 
+  margin-left: -20px;
+}
+ul.mainmenulist li:hover ul{
+       display: flex !important;
+}
+ul.submenulist {
+       display: none !important;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: baseline !important;
+     position: absolute;
+    top: -33px;
+    right: -220px;
+   border-radius: 9px;
+    background: #45515f;
+    /*backdrop-filter: blur(0.5px);*/
+    padding: 2px 0px;
+}
+.dropdown-toggle{
+    padding-left:20px !important;
+    min-width:200px;
+    text-align: start;
+}
+.dropdown-menu.show{
+ margin-top: -7px;
+    padding: 0px !important;
+    border: none;
+    width: 100%;
+    min-width:unset;
+}
+.map-location img {
+    margin-bottom:20px;
+    border-radius: 40px;
+}
+.modal-content{
+    border-radius: 50px;
+background: rgba(255, 255, 255, 0.80);
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(2px);
+}
+.modal-body input{
+    border-radius: 10px !important;
+    background: #FFF;
+    height:57px;
+    border:none;
+    margin-bottom:20px;
+    padding:10px;
+    width:100%;
+}
+input[type="checkbox"]{
+    width:19px;
+    height:19px;
+    margin-bottom:0px;
+    border:none;
+    margin-right:10px;
+}
+span.wpcf7-form-control.wpcf7-checkbox {
+    display:flex;
+    flex-direction:column;
+}
+span.wpcf7-form-control.wpcf7-checkbox span{
+    margin-left:0px !important;
+}
+.modal-body  label {
+    display: flex;
+    align-items: center;
+}
+.modal-body .wpforms-container .wpforms-submit-container .wpforms-submit{
+    border-radius: 10px;
+background: #98733B !important;
+border:none !important;
+padding: 10px 20px;
+color:white;
+max-width:115px;
+}
+.modal-body .wpforms-container .wpforms-field{
+    padding:5px 0px !important;
+    
+}
 
+
+.subscribe-form .wpforms-submit-container {
+    position: absolute !important;
+    top: 12px;
+    height: 43px;
+    right: 07px;
+}
+.subscribe-form .wpforms-submit-container button#wpforms-submit-678{
+  background: #000 !important;
+    border-radius: 50%;
+    height: 30px !important;
+    padding: 0px !IMPORTANT;
+    width: 30px !important;
+}
+.subscribe-form .wpforms-field-container input {
+    width: 95% !important;
+    padding: 10px 20px !important;
+    background: #fff !important;
+    border: 1px solid #8F90A6 !important;
+    color: #8F90A6 !important;
+    border-radius: 15px !important;
+    margin-left: 5px !important;
+}
+.subscribe-form .wpforms-field-container input:focus{
+    border-color:black !important;
+    box-shadow:none !important;
+}

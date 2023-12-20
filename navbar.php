@@ -7,10 +7,10 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en' ) {
   ?>
 
-<header class="p-0 desktop-header" id="header">
+<header class=" desktop-header" id="header">
   <div class="container">
     <nav>
       <ul>
@@ -21,6 +21,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
               Home
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="mainmenulist">
               <?php
               // Specify the menu location
               $menu_location = 'custom_menu';
@@ -36,17 +37,50 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
                 // Check if there are menu items
                 if ($menu_items) {
-                  foreach ($menu_items as $menu_item) {
+                 
+                    $subitems=[];
+                  foreach($menu_items as $menu_item){
+                      if($menu_item->menu_item_parent !== '0'){
+                          $subitemarray=array("id"=>$menu_item->menu_item_parent , "item"=>$menu_item );
+                        array_push($subitems,$subitemarray);
+                      }
+                  }
+                  $currentitemid='';
+                  foreach ($menu_items as $index => $menu_item) {
                     // Get the text and link (URL) of the menu item
                     $text = $menu_item->title;
                     $link = $menu_item->url;
-
                     // Output or use the text and link as needed
-                    echo '<a class="dropdown-item" href="' . esc_html($link) . '">| ' . esc_html($text) . '</a> ';
+                    if($menu_item->menu_item_parent == '0' ){
+                        if($menu_items[$index + 1]->menu_item_parent == '0'){
+                           echo '<li><a class="dropdown-item" href="' . esc_html($link) . '">' . esc_html($text) . '</a> </li>';      
+                        }
+                        else{
+                          echo '<li><a class="dropdown-item" href="' . esc_html($link) . '">' . esc_html($text) . '</a>';      
+                        }
+                    }
+                    else{
+                       
+                        if($menu_item->menu_item_parent === $currentitemid){
+                              continue;
+                     }
+                     else{
+                          echo "<ul class='submenulist'>";
+                         foreach($subitems as $subitem){
+                         if($subitem["id"] == $menu_item->menu_item_parent){
+                          echo '<li> <a class="dropdown-item" href="' . esc_html($subitem['item']->url) . '">' . esc_html($subitem['item']->title) . '</a> </li>';   
+                         } 
+                        } 
+                     }
+                        echo "</ul> </li>";
+                        $currentitemid=$menu_item->menu_item_parent;
+                    }
+                 
                   }
                 }
               }
               ?>
+              </ul>
             </div>
           </div>
         </li>
@@ -59,13 +93,14 @@ if ($selected_locale === 'en' || $selected_locale === '') {
         </li>
 
         <li class="d-flex justify-content-end">
-          <a href="">
+          <a href="<?php echo get_home_url();?>/contact-us/">
             <button class="contact-btn">Contact us</button>
           </a>
           <form action="" method="POST">
             <select class="lang-select" name="locale" onchange="this.form.submit()">
-              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
               <option value="ar" <?php selected($_SESSION['locale'], 'ar'); ?>>عربي</option>
+              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
+       
             </select>
           </form>
         </li>
@@ -95,6 +130,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
               Home
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                
               <?php
               // Specify the menu location
               $menu_location = 'custom_menu';
@@ -116,7 +152,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                     $link = $menu_item->url;
 
                     // Output or use the text and link as needed
-                    echo '<a class="dropdown-item" href="' . esc_html($link) . '">| ' . esc_html($text) . '</a> ';
+                    echo '<a class="dropdown-item" href="' . esc_html($link) . '"> ' . esc_html($text) . '</a> ';
                   }
                 }
               }
@@ -125,13 +161,14 @@ if ($selected_locale === 'en' || $selected_locale === '') {
           </div>
         </li>
         <li class="d-flex justify-content-end">
-          <a href="">
+          <a href="<?php echo get_home_url();?>/contact-us/">
             <button class="contact-btn">Contact us</button>
           </a>
           <form action="" method="POST">
             <select class="lang-select" name="locale" onchange="this.form.submit()">
-              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
+                
               <option value="ar" <?php selected($_SESSION['locale'], 'ar'); ?>>عربي</option>
+              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
             </select>
           </form>
         </li>
@@ -140,7 +177,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
   </div>
 </header>
 <?php }
-else{
+else if($selected_locale === 'ar'|| $selected_locale === ''){
  ?>
 <div class="arabic">
   <header class="desktop-header" id="header">
@@ -152,6 +189,7 @@ else{
             الرئيسية
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <ul class="mainmenulist">
               <?php
               // Specify the menu location
               $menu_location = 'custom_menu_ar';
@@ -160,24 +198,57 @@ else{
               $menu_object = get_nav_menu_locations();
               $menu_id = isset($menu_object[$menu_location]) ? $menu_object[$menu_location] : null;
 
-              // Check if the menu ID exists
+
               if ($menu_id) {
                 // Get menu items from the specified menu
                 $menu_items = wp_get_nav_menu_items($menu_id);
 
                 // Check if there are menu items
                 if ($menu_items) {
-                  foreach ($menu_items as $menu_item) {
+                          
+                    $subitems=[];
+                  foreach($menu_items as $menu_item){
+                      if($menu_item->menu_item_parent !== '0'){
+                          $subitemarray=array("id"=>$menu_item->menu_item_parent , "item"=>$menu_item );
+                        array_push($subitems,$subitemarray);
+                      }
+                  }
+                  $currentitemid='';
+                  foreach ($menu_items as $index => $menu_item) {
                     // Get the text and link (URL) of the menu item
                     $text = $menu_item->title;
                     $link = $menu_item->url;
-
                     // Output or use the text and link as needed
-                    echo '<a class="dropdown-item" href="' . esc_html($link) . '">| ' . esc_html($text) . '</a> ';
+                    if($menu_item->menu_item_parent == '0' ){
+                        if($menu_items[$index + 1]->menu_item_parent == '0'){
+                           echo '<li><a class="dropdown-item" href="' . esc_html($link) . '">' . esc_html($text) . '</a> </li>';      
+                        }
+                        else{
+                          echo '<li><a class="dropdown-item" href="' . esc_html($link) . '">' . esc_html($text) . '</a>';      
+                        }
+                    }
+                    else{
+                       
+                        if($menu_item->menu_item_parent === $currentitemid){
+                              continue;
+                     }
+                     else{
+                          echo "<ul class='submenulist'>";
+                         foreach($subitems as $subitem){
+                         if($subitem["id"] == $menu_item->menu_item_parent){
+                          echo '<li> <a class="dropdown-item" href="' . esc_html($subitem['item']->url) . '">' . esc_html($subitem['item']->title) . '</a> </li>';   
+                         } 
+                        } 
+                     }
+                        echo "</ul> </li>";
+                        $currentitemid=$menu_item->menu_item_parent;
+                    }
+                 
                   }
                 }
               }
               ?>
+              </ul>
             </div>
           </div>
         </li>
@@ -188,13 +259,13 @@ else{
           <a href="/"><img src="<?php echo esc_url($logo_url); ?>" class="black-logo" alt="logo" /></a>
         </li>
         <li class="d-flex justify-content-end">
-          <a href="">
+          <a href="<?php echo get_home_url();?>/contact-us/">
             <button class="contact-btn">اتصل بنا</button>
           </a>
           <form action="" method="POST">
             <select class="lang-select" name="locale" onchange="this.form.submit()">
-              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
               <option value="ar" <?php selected($_SESSION['locale'], 'ar'); ?>>عربي</option>
+              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
             </select>
           </form>
         </li>
@@ -251,13 +322,13 @@ else{
         </li>
 
         <li class="d-flex justify-content-end">
-          <a href="">
+          <a href="<?php echo get_home_url();?>/contact-us/">
             <button class="contact-btn">اتصل بنا</button>
           </a>
           <form action="" method="POST">
             <select class="lang-select" name="locale" onchange="this.form.submit()">
-              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
               <option value="ar" <?php selected($_SESSION['locale'], 'ar'); ?>>عربي</option>
+              <option value="en" <?php selected($_SESSION['locale'], 'en'); ?>>English</option>
             </select>
           </form>
         </li>

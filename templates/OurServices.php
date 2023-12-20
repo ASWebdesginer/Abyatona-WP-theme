@@ -16,7 +16,7 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
   $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en' ) {
 ?>
 
 
@@ -122,7 +122,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
 
   // English content
 
-} elseif ($selected_locale === 'ar') {
+} elseif ($selected_locale === 'ar' || $selected_locale === '') {
   // Arabic content
 ?>
   <div class="arabic">

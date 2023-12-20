@@ -16,7 +16,7 @@ $selected_locale = '';
 if (isset($_SESSION['locale'])) {
     $selected_locale = $_SESSION['locale'];
 }
-if ($selected_locale === 'en' || $selected_locale === '') {
+if ($selected_locale === 'en') {
 ?>
     <!-- hero start -->
     <section class="banner" id="banner">
@@ -93,10 +93,11 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                         </h2>
                         <?php echo get_field('about_section_description'); ?>
 
-                        <button>
+
                             <a href="<?php echo get_field('about_section_button_url'); ?>" style="color:white;">
-                                <?php echo get_field('about_section_button_text'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/up-arrow.png" alt="arrow" /></a>
-                        </button>
+                                                        <button>
+                                <?php echo get_field('about_section_button_text'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/up-arrow.png" alt="arrow" />  </button></a>
+                       
 
                         <div class="position-logo">
                             <img src="<?php echo get_template_directory_uri(); ?>/img/abyatona-logo.png" class="content-logo" alt="logo" />
@@ -105,7 +106,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="img-slider">
+                        <div class="img-slider roundslider">
                             <?php
                             $images = get_field('about_section_gallery');
                             if ($images) : ?>
@@ -226,14 +227,14 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                 endif; ?>
             </div>
         </div>
-
+    </section>
         <!-- partner   start -->
 
     <?php
 
     // English content
 
-} elseif ($selected_locale === 'ar') {
+} elseif ($selected_locale === 'ar' || $selected_locale === '') {
     // Arabic content
     ?>
 
@@ -310,7 +311,7 @@ if ($selected_locale === 'en' || $selected_locale === '') {
                     <div class="content">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="img-slider">
+                                <div class="img-slider roundslider">
                                     <div id="demo" class="carousel slide" data-ride="carousel">
                                         <?php
                                         $images_ar = get_field('about_section_gallery_arabic');
